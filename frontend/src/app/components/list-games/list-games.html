@@ -1,0 +1,6 @@
+<div class="mt-5 p-2 flex flex-col">
+  <h1 class="text-3xl font-bold ml-6">{{ listName }}</h1>
+  <div class="list-component flex gap-3 p-3">
+    <app-list-games-card *ngFor="let game of gameList" [game]="game" />
+  </div>
+</div>

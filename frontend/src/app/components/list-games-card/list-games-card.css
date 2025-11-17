@@ -1,0 +1,14 @@
+.card-component {
+  transition: 0.3s;
+}
+.card-component:hover {
+  transform: scale(1.1);
+}
+button {
+  background-color: #00ffff;
+  color: #28292d;
+  width: 100px;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 2%;
+}

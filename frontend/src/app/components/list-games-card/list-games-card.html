@@ -1,0 +1,9 @@
+<div class="flex flex-col justify-center align-center w-[18vw] p-3 card-component">
+  <img *ngIf="game.image_url" [src]="game.image_url" alt="{{ game.name }}" class="rounded-xl" />
+  <h2 class="text-xl font-bold">{{ game.name }}</h2>
+  <p *ngIf="game.genre" class="flex gap-1">
+    <app-app-icon [name]="'category'" />
+    {{ game.genre }}
+  </p>
+  <button>See More</button>
+</div>
