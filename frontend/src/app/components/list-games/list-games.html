@@ -1,6 +1,32 @@
-<div class="mt-5 p-2 flex flex-col">
+<div class="m-5 p-2 flex flex-col">
   <h1 class="text-3xl font-bold ml-6">{{ listName }}</h1>
-  <div class="list-component flex gap-3 p-3">
-    <app-list-games-card *ngFor="let game of gameList" [game]="game" />
+  <div class="relative">
+    <button
+      *ngIf="_showLeftButton && gameList.length > 5"
+      (click)="_scrollLeft()"
+      class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/40 text-white p-2 h-10 w-8 rounded-md"
+    >
+      <app-app-icon [name]="'arrow_back_ios'" />
+    </button>
+
+    <div
+      #scrollContainer
+      class="flex m-3 gap-3 overflow-x-hidden overflow-y-hidden scroll-smooth"
+      (scroll)="_checkScrollPosition()"
+    >
+      <app-list-games-card
+        *ngFor="let game of gameList"
+        [game]="game"
+        class="flex shrink-0 w-64"
+      ></app-list-games-card>
+    </div>
+
+    <button
+      *ngIf="gameList.length > 5"
+      (click)="_scrollRight()"
+      class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/40 text-white p-2 w-8 h-10 rounded-md"
+    >
+      <app-app-icon [name]="'arrow_forward_ios'" />
+    </button>
   </div>
 </div>

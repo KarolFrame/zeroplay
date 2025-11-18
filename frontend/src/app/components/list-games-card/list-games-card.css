@@ -4,7 +4,7 @@
 .card-component:hover {
   transform: scale(1.1);
 }
-button {
+.see-more-button {
   background-color: #00ffff;
   color: #28292d;
   width: 100px;

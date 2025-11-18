@@ -1,0 +1,14 @@
+<div class="relative">
+  <img src="{{ game?.image_url }}" class="w-full h-[35vh] rounded-md object-cover" />
+  <div class="absolute left-4 bottom-4 text-white z-10 bg-black/20 p-5 rounded-md">
+    <h1 class="text-4xl font-bold">{{ game?.name }}</h1>
+    <p class="text-2xl">FREE TO PLAY NOW</p>
+    <a
+      href="{{ game?.game_url }}"
+      target="_blank"
+      class="inline-block mt-2 px-4 py-2 rounded-lg text-md font-semibold button-play"
+    >
+      Play Free Now
+    </a>
+  </div>
+</div>

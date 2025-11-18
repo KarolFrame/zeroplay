@@ -43,3 +43,18 @@ export class GamesServiceLatest5 {
     return this.http.get<Game[]>(this.apiUrl);
   }
 }
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GameService {
+  private apiUrl = 'http://127.0.0.1:8000/api/games';
+
+  constructor(private http: HttpClient) {}
+  getGameDetails(id: number): Observable<Game> {
+    return this.http.get<Game>(`${this.apiUrl}/${id}`);
+  }
+  getRelatedGames(id: number): Observable<Game[]> {
+    return this.http.get<Game[]>(`${this.apiUrl}/${id}/related`);
+  }
+}

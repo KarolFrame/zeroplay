@@ -1,0 +1,50 @@
+<div class="mt-10 p-6 rounded-lg shadow-xl">
+  <h3 class="text-2xl font-bold mb-4 text-white border-b border-gray-700 pb-2">ABOUT THIS GAME</h3>
+  <p class="text-gray-300 leading-relaxed">
+    {{ game?.description }}
+  </p>
+
+  <h3 class="text-2xl font-bold mt-8 mb-4 text-white border-b border-gray-700 pb-2">DETAILS</h3>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-300">
+    <div>
+      <span class="block font-semibold text-gray-400">Genre</span>
+      <span class="text-lg">{{ game?.genre }}</span>
+    </div>
+
+    <div>
+      <span class="block font-semibold text-gray-400">Platform</span>
+      <span class="text-lg">{{ game?.platform }}</span>
+    </div>
+
+    <div>
+      <span class="block font-semibold text-gray-400">Developer</span>
+      <span class="text-lg">{{ game?.developer }}</span>
+    </div>
+
+    <div>
+      <span class="block font-semibold text-gray-400">Publisher</span>
+      <span class="text-lg">{{ game?.publisher }}</span>
+    </div>
+
+    <div>
+      <span class="block font-semibold text-gray-400">Release Date</span>
+      <span class="text-lg">{{ game?.release_date }}</span>
+    </div>
+
+    <div *ngIf="game?.rank">
+      <span class="block font-semibold text-gray-400">Rank</span>
+      <span class="text-lg font-bold text-rank">#{{ game?.rank }}</span>
+    </div>
+
+    <div class="col-span-2">
+      <span class="block font-semibold text-gray-400">Tags</span>
+      <span
+        class="inline-block bg-gray-700 text-sm text-gray-200 px-3 py-1 rounded-full mr-2 mt-1"
+        *ngFor="let tag of game?.tags"
+      >
+        {{ tag }}
+      </span>
+    </div>
+  </div>
+</div>

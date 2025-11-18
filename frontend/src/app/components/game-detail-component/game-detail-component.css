@@ -1,0 +1,12 @@
+.button-play {
+  color: #00ffff;
+  background-color: #28292d;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 2%;
+  transition: 0.3s;
+}
+
+.button-play:hover {
+  transform: scale(1.1);
+}
