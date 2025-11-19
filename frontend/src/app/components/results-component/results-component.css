@@ -1,0 +1,9 @@
+.button-pagination {
+  background-color: #1a1b1d;
+}
+.button-pagination:hover {
+  background-color: #00ffff;
+}
+.button-current-page {
+  background-color: #00ffff;
+}

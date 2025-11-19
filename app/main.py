@@ -139,6 +139,34 @@ def get_related_games(game_id: int, session: Session = Depends(get_session)):
         
     return games_list
 
+@app.get("/games")
+def get_games(
+    title: str | None = None,
+    genre: str | None = None,
+    platform: str | None = None,
+    tags: str | None = None,
+    session: Session = Depends(get_session)
+):
+
+    query = select(Games)
+
+    if title:
+        words = title.strip().split()
+        for word in words:
+            query = query.where(Games.name.ilike(f"%{word}%"))
+
+    if genre:
+        query = query.where(Games.genre == genre)
+
+    if platform:
+        query = query.where(Games.platform == platform)
+
+    if tags:
+        tag_list = [t.strip() for t in tags.split(",")]
+        for tag in tag_list:
+            query = query.where(Games.tags.contains(f'"{tag}"'))
+
+    return session.exec(query).all()
 
 @app.get("/debug/games")
 def list_games():

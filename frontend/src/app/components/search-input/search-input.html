@@ -1,0 +1,23 @@
+<form (ngSubmit)="_search()" class="flex flex-col sm:flex-row items-center gap-3 mt-4">
+  <label class="sr-only" for="title">Search games by title</label>
+  <input
+    id="title"
+    name="title"
+    [(ngModel)]="filters.title"
+    placeholder="Search games by title..."
+    class="rounded px-3 py-2 w-full sm:w-auto"
+  />
+
+  <label class="sr-only" for="genre">Genre</label>
+  <select
+    id="genre"
+    name="genre"
+    [(ngModel)]="filters.genre"
+    class="custom-select rounded px-3 py-2 text-gray-800 w-full sm:w-auto"
+  >
+    <option value="">All genres</option>
+    <option *ngFor="let g of genres" [value]="g">{{ g }}</option>
+  </select>
+
+  <button type="submit" class="button-search px-4 py-2 rounded">Search</button>
+</form>

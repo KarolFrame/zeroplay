@@ -1,0 +1,40 @@
+<div class="mt-5" *ngIf="gameList.length === 0">
+  <p class="text-xl">{{ randomMessaje }}</p>
+</div>
+<div *ngIf="gameList.length > 0" class="mt-5 flex flex-col justify-center text-center">
+  <h2 class="text-4xl md:text-6xl font-bold mb-6">RESULTS</h2>
+
+  <div
+    class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center"
+  >
+    <app-list-games-card *ngFor="let game of pagedGames" [game]="game"> </app-list-games-card>
+  </div>
+
+  <div class="flex justify-center gap-2 mt-6 flex-wrap">
+    <button
+      *ngIf="currentPage != 1"
+      (click)="_prevPage()"
+      class="px-3 py-1 button-pagination rounded disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      «
+    </button>
+    <ng-container *ngFor="let page of visiblePages">
+      <button
+        (click)="_goToPage(page)"
+        [class.button-current-page]="page === currentPage"
+        [class.text-white]="page === currentPage"
+        class="px-3 py-1 rounded button-pagination hover:text-white"
+      >
+        {{ page }}
+      </button>
+    </ng-container>
+
+    <button
+      *ngIf="currentPage != totalPages"
+      (click)="_nextPage()"
+      class="px-3 py-1 button-pagination rounded disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      »
+    </button>
+  </div>
+</div>
