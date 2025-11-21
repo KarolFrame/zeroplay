@@ -39,7 +39,15 @@ export class SearchInput {
     });
   };
 
-  _resetInputs = () => {};
+  _resetInputs = () => {
+    this.filters = {
+      title: '',
+      genre: '',
+      platform: '',
+      tags: [],
+    };
+    this.tagsInput = '';
+  };
 
   _search() {
     this.filters.tags = this.tagsInput
@@ -54,5 +62,6 @@ export class SearchInput {
       });
     });
     this._scroolToTop();
+    this._resetInputs();
   }
 }
