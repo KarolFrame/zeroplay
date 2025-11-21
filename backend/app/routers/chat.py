@@ -38,7 +38,7 @@ If you cannot find a suitable recommendation, ask for more details.
             "Content-Type": "application/json"
         },
         json={
-            "model": "qwen/qwen3-coder:free",
+            "model": "google/gemma-7b-it:free",
             "messages": [
                 {"role": "user", "content": prompt}
             ]
