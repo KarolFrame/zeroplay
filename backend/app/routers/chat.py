@@ -1,18 +1,18 @@
 from fastapi import APIRouter
 from sqlmodel import Session, select
 from app.db import engine, Games
-import google.generativeai as genai
+import requests
 import os
 
 router = APIRouter()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("models/gemini-pro")
+API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 @router.post("/chat")
 def chat_ai(data: dict):
     message = data.get("message", "")
 
+    # Cargar juegos
     with Session(engine) as session:
         games = session.exec(select(Games)).all()
 
@@ -22,17 +22,30 @@ def chat_ai(data: dict):
     ])
 
     prompt = f"""
-    You are a helpful assistant specialized in video games.
-    You can ONLY recommend games from this list:
-    {games_text}
+You are a videogame expert assistant.
+ONLY recommend games from this list:
 
-    The user says:
-    "{message}"
+{games_text}
 
-    Respond naturally and clearly.
-    If you cannot find a suitable game, ask for more details.
-    """
+The user says:
+"{message}"
 
-    response = model.generate_content(prompt)
+If you cannot find a suitable recommendation, ask for more details.
+"""
 
-    return {"response": response.text}
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": "meta-llama/llama-3-8b-instruct",
+            "messages": [
+                {"role": "user", "content": prompt}
+            ]
+        }
+    )
+
+    data = response.json()
+    return {"response": data["choices"][0]["message"]["content"]}
