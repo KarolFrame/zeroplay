@@ -17,7 +17,7 @@ def chat_ai(data: dict):
         games = session.exec(select(Games)).all()
 
     games_text = "\n".join([
-        f"{g.title} – {g.genre or 'no genre'} – {g.description or ''}"
+        f"{g.name} – {g.genre or 'no genre'} – {g.description or ''}"
         for g in games
     ])
 
