@@ -40,13 +40,14 @@ If you cannot find a suitable recommendation, ask for more details.
             "Content-Type": "application/json"
         },
         json={
-            "model": "meta-llama/llama-3-8b-instruct",
+            "model": "huggingfaceh4/zephyr-7b-beta",
             "messages": [
                 {"role": "user", "content": prompt}
             ]
         }
     )
     response_json = response.json()
+    print("OPENROUTER RAW RESPONSE:", response_json)
 
     if "choices" not in response_json:
         return {"response": "AI could not generate a response."}
