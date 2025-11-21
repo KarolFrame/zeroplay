@@ -11,8 +11,6 @@ API_KEY = os.getenv("OPENROUTER_API_KEY")
 @router.post("/chat")
 def chat_ai(data: dict):
     message = data.get("message", "")
-
-    # Cargar juegos
     with Session(engine) as session:
         games = session.exec(select(Games)).all()
 
@@ -40,7 +38,7 @@ If you cannot find a suitable recommendation, ask for more details.
             "Content-Type": "application/json"
         },
         json={
-            "model": "huggingfaceh4/zephyr-7b-beta",
+            "model": "nousresearch/hermes-3-llama-3.1-405b:free",
             "messages": [
                 {"role": "user", "content": prompt}
             ]
