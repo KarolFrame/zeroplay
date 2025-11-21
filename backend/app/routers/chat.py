@@ -11,8 +11,6 @@ API_KEY = os.getenv("OPENROUTER_API_KEY")
 @router.post("/chat")
 def chat_ai(data: dict):
     message = data.get("message", "")
-
-    # Cargar juegos
     with Session(engine) as session:
         games = session.exec(select(Games)).all()
 
@@ -47,5 +45,14 @@ If you cannot find a suitable recommendation, ask for more details.
         }
     )
 
-    data = response.json()
-    return {"response": data["choices"][0]["message"]["content"]}
+    json_response = response.json()
+
+    if "choices" not in json_response:
+        return {
+            "response": "⚠️ AI error: model did not return a valid response.",
+            "details": json_response
+        }
+
+    return {
+        "response": json_response["choices"][0]["message"]["content"]
+    }
