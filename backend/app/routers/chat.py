@@ -27,7 +27,13 @@ ONLY recommend games from this list:
 
 The user says:
 "{message}"
-
+⚠️ IMPORTANT RULES:
+- Respond in 80 words or less.
+- Recommend ONLY 3 games maximum.
+- Choose the BEST matches, not the whole list.
+- Keep answers SHORT and friendly.
+- Never repeat games.
+- If you cannot find a good match, ask for more details.
 If you cannot find a suitable recommendation, ask for more details.
 """
 
@@ -41,7 +47,9 @@ If you cannot find a suitable recommendation, ask for more details.
             "model": "mistralai/Mistral-7B-Instruct-v0.2",
             "messages": [
                 {"role": "user", "content": prompt}
-            ]
+            ],
+            "max_tokens":120,
+            "temperature": 0.7
         }
     )
     response_json = response.json()
