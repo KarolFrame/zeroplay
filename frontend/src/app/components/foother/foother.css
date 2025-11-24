@@ -1,0 +1,14 @@
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+.social-button {
+  transition: 0.3s;
+}
+.social-button:hover {
+  transform: scale(1.1);
+  color: #00ffff;
+}

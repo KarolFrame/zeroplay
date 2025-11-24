@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AppIcon } from '../app-icon/app-icon';
 
 @Component({
   selector: 'app-chat',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AppIcon],
   templateUrl: './chat.html',
   styleUrl: './chat.css',
 })

@@ -1,0 +1,27 @@
+<div class="card flex justify-between items-end p-3 footer-fixed">
+  <div class="ml-6 flex gap-3">
+    <span class="font-bold"> Carolina Pérez © 2025 </span>
+    <a class="social-button" href="https://github.com/karolframe" target="_blank" rel="noopener">
+      <app-app-icon name="code" />
+    </a>
+    <a
+      class="social-button"
+      href="https://www.linkedin.com/in/carolina-perez-segura"
+      target="_blank"
+      rel="noopener"
+    >
+      <app-app-icon name="work" />
+    </a>
+    <a class="social-button" href="mailto:carolina.peseca@gmail.com">
+      <app-app-icon name="mail" />
+    </a>
+  </div>
+  <div class="mr-6">
+    <button class="ia-button" (click)="op.toggle($event)">
+      <img class="h-16 w-auto ml-4" src="/assets/img/chat.png" alt="chat ai image" />
+    </button>
+    <p-popover #op>
+      <app-chat />
+    </p-popover>
+  </div>
+</div>
