@@ -122,7 +122,7 @@ ZeroPlay uses OpenRouter for:
 
 | Method | Route | Description |
 |--------|--------|-------------|
-| GET | `/api/latest10` | Top 10 by rank |
+| GET | `/api/latest10` | Lastest 10 games |
 | GET | `/api/top10` | Top 10 by rank |
 | GET | `/api/trending` | Trending games (rank + recency) |
 | GET | `/api/games` | All games |
