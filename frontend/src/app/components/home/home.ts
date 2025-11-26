@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ListGames } from '../list-games/list-games';
 import {
-  GamesServiceTop5 as GamesServiceTop10,
-  GamesServiceLatest5 as GamesServiceLatest10,
+  GamesServiceTop10 as GamesServiceTop10,
+  GamesServiceLatest10 as GamesServiceLatest10,
   GamesServiceTrending,
 } from '../../services/games';
 import { Game } from '../../services/games';
