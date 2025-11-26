@@ -11,7 +11,12 @@
   </div>
 
   <div class="input-area">
-    <input [(ngModel)]="input" class="ia-input" placeholder="Write your message..." />
+    <input
+      [(ngModel)]="input"
+      class="ia-input"
+      placeholder="Write your message..."
+      (keyup.enter)="send()"
+    />
     <button (click)="send()"><app-app-icon [name]="'keyboard_return'" /></button>
   </div>
 </div>
