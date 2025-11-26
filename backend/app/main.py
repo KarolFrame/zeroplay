@@ -98,24 +98,25 @@ def get_latest5_games(session: Session = Depends(get_session)):
     return games_list
 
 @app.get("/api/trending", response_model=List[GameRead])
-def get_top5_games(session: Session = Depends(get_session)):
+def get_trending(session: Session = Depends(get_session)):
     games = session.exec(
         select(Games).where(Games.rank != None)
     ).all()
-
     def score(game: Games):
         rank_score = 1 / game.rank if game.rank and game.rank > 0 else 0
         if game.release_date:
             try:
-                release_year = int(game.release_date.split("-")[0])
-                date_score = release_year / datetime.now().year
+                release_dt = datetime.strptime(game.release_date, "%Y-%m-%d")
+                days_since_release = (datetime.now() - release_dt).days
+                recency_score = 1 / (1 + days_since_release)
             except:
-                date_score = 0
+                recency_score = 0
         else:
-            date_score = 0
-        return (rank_score * 0.7) + (date_score * 0.3)
-    trending = sorted(games, key=lambda g: score(g), reverse=True)
-    trending = trending[:10]
+            recency_score = 0
+        return (rank_score * 0.6) + (recency_score * 0.4)
+
+    trending = sorted(games, key=score, reverse=True)[:10]
+
     result = []
     for g in trending:
         game_data = g.dict()
